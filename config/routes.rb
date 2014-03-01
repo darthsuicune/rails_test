@@ -1,4 +1,10 @@
 FirstTest::Application.routes.draw do
+  resources :roles
+
+
+  resources :locations
+
+
   resources :users
 
 
