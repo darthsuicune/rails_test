@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  latitude: 
+  longitude: 
+  name: MyString
+  address: MyString
+  other: MyString
+  type: 
+  expiredate: 1
+
+two:
+  latitude: 
+  longitude: 
+  name: MyString
+  address: MyString
+  other: MyString
+  type: 
+  expiredate: 1
