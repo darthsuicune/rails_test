@@ -5,7 +5,7 @@ describe "StaticPages" do
   let(:base_title) { "Test Page" }
   
   describe "Home page" do
-    it "should have the content 'R0uzic es un poquito gay'" do
+    it "should have the content 'home.html.erb'" do
       visit '/static_pages/home'
       expect(page).to have_content('home.html.erb')
     end
@@ -22,7 +22,7 @@ describe "StaticPages" do
   end
   
   describe "About page" do
-    it "should have the content 'Tu tambien'" do
+    it "should have the content 'About us'" do
       visit '/static_pages/about'
       expect(page).to have_content('About us')
     end
