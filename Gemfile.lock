@@ -193,7 +193,7 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   childprocess
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   guard-rspec
   guard-spork
   jbuilder
@@ -201,7 +201,7 @@ DEPENDENCIES
   libnotify
   rails (= 3.2.16)
   rspec-rails
-  sass-rails (~> 3.2.3)
+  sass-rails
   selenium-webdriver
   spork-rails
   sqlite3
