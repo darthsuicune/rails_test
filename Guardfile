@@ -24,7 +24,7 @@ guard :rspec do
 end
 
 guard 'rspec', all_after_pass: false, cmd: '--drb' do
-watch('config/routes.rb')
+  watch('config/routes.rb')
   # Custom Rails Tutorial specs
   watch(%r{^app/controllers/(.+)_(controller)\.rb$}) do |m|
     ["spec/routing/#{m[1]}_routing_spec.rb",
