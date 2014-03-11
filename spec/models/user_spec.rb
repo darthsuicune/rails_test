@@ -41,6 +41,8 @@ describe User do
     it { should_not be_valid }
   end
   
+  #EMAIL tests
+  
   describe "when email is not present" do
     before { @user.email = " " }
     
@@ -76,6 +78,18 @@ describe User do
     it { should_not be_valid }
   end
   
+  describe "email is downcased" do
+    let(:email1) { "dEnIs@localhost.com" }
+    it "should be lower case" do
+      @user.email = email1
+      @user.save
+      @user.reload.email.should == email1.downcase
+
+    end
+  end
+  
+  #Password tests
+  
   describe "when password is not present" do
     before { @user.password = @user.password_confirmation = " " }
     it { should_not be_valid }
@@ -95,6 +109,8 @@ describe User do
     before { @user.password_confirmation = nil }
     it { should_not be_valid }
   end
+  
+  #Authentication tests
   
   describe "return value of authenticate method" do
     before { @user.save }
