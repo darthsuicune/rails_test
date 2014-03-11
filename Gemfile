@@ -16,6 +16,7 @@ group :development, :test do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'childprocess'
+  gem 'factory_girl_rails'
 end
 # Gems used only for assets and not required
 # in production environments by default.
@@ -33,7 +34,7 @@ group :development do
   gem 'annotate'
 end
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '< 2.9'
 gem 'turbolinks'
 
 gem 'jquery-rails'
