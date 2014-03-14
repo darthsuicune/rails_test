@@ -2,13 +2,17 @@ FirstTest::Application.routes.draw do
 
   root :to => 'static_pages#home'
   
-  match '/about', to: 'static_pages#about', via: 'get'
-  match '/contact', to: 'static_pages#contact', via: 'get'
-  match '/signup',  to: 'users#new', via: 'get'
+  match '/about', to: 'static_pages#about', via: :get
+  match '/contact', to: 'static_pages#contact', via: :get
+  match '/signup',  to: 'users#new', via: :get
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
  
   resources :roles
   resources :locations
   resources :users
+  
+  resources :sessions, only: [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:
