@@ -22,6 +22,7 @@ describe User do
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:admin) }
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
@@ -29,6 +30,16 @@ describe User do
   it { should respond_to(:authenticate) }
   
   it { should be_valid }
+  it { should_not be_admin }
+  
+  describe "with admin attribute activated" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+    
+    it { should be_admin }
+  end
   
   describe "when name is not present" do
     before { @user.name = " " }
@@ -101,7 +112,7 @@ describe User do
     it { should be_invalid }
   end
   
-  describe "when password doesn't match confirmation" do
+  describe "when password isn't matching confirmation" do
     before { @user.password_confirmation = "mismatch" }
     it { should_not be_valid }
   end

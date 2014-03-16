@@ -37,6 +37,9 @@ end
 gem 'bootstrap-sass', '< 2.9'
 gem 'turbolinks'
 
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
+
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
