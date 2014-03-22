@@ -12,6 +12,7 @@ module ApplicationHelper
   
   def startup
     #create_random_users
+    #create_microposts
   end
   
   def create_random_users
@@ -37,6 +38,14 @@ module ApplicationHelper
                    email: email,
                    password: password,
                    password_confirmation: password)
+    end
+  end
+  
+  def create_microposts
+    users = User.all(limit: 6)
+    50.times do |n|
+      content = "DAFUQ #{n}"
+      users.each { |user| user.microposts.create!(content: content) }
     end
   end
 end

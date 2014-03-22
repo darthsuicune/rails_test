@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "StaticPages" do
+describe "Static pages" do
   subject { page }
 
   shared_examples_for "all static pages" do
@@ -10,11 +10,27 @@ describe "StaticPages" do
 
   describe "Home page" do
     before { visit root_path }
-    let(:content)    { 'home.html' }
+    let(:content)    { 'ZOMBI' }
     let(:page_title) { '' }
 
     it_should_behave_like "all static pages"
     it { should_not have_title ' | Home' }
+    
+    describe "for signed-in users" do
+      let(:user) { FactoryGirl.create(:user) }
+      before do
+        FactoryGirl.create(:micropost, user:user, content: "Random text")
+        FactoryGirl.create(:micropost, user:user, content: "I've already seen this")
+        sign_in user
+        visit root_path
+      end
+      
+      it "should render the user's feed" do
+        user.feed.each do |item|
+          page.should have_selector("li##{item.id}", text: item.content)
+        end
+      end
+    end
   end
   
   describe "About page" do
