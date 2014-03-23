@@ -40,4 +40,15 @@ describe "Micropost Pages" do
       end
     end
   end
+  
+  describe "micropost view" do
+    let(:user2) { FactoryGirl.create(:user, email: "asdfasdf@asdfasdf.asdf", name: "AAA") }
+    before do 
+      FactoryGirl.create(:micropost, user: user2, content: "AAAAAAAAAA")
+      visit user_path(user2)
+    end
+    
+    it { should have_content("AAAAAAAAAA") }
+    it { should_not have_link("Delete") }
+  end
 end

@@ -8,7 +8,7 @@ describe "Static pages" do
     it { should have_title(full_title(page_title)) }
   end
 
-  describe "Home page" do
+  describe "home page" do
     before { visit root_path }
     let(:content)    { 'ZOMBI' }
     let(:page_title) { '' }
@@ -19,8 +19,8 @@ describe "Static pages" do
     describe "for signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        FactoryGirl.create(:micropost, user:user, content: "Random text")
-        FactoryGirl.create(:micropost, user:user, content: "I've already seen this")
+        FactoryGirl.create(:micropost, user: user, content: "Random text")
+        FactoryGirl.create(:micropost, user: user, content: "I've already seen this")
         sign_in user
         visit root_path
       end
@@ -28,6 +28,24 @@ describe "Static pages" do
       it "should render the user's feed" do
         user.feed.each do |item|
           page.should have_selector("li##{item.id}", text: item.content)
+        end
+      end
+      
+      it { should have_content("micropost".pluralize(user.microposts.count)) }
+      
+      describe "feed pagination" do
+        before(:each) do
+          100.times { FactoryGirl.create(:micropost, user: user, content: "Afqfenj") }
+          sign_in user
+          visit root_path
+        end
+        after(:all) { user.microposts.delete_all }
+        
+        it { should have_selector('div.pagination') }
+        it "should list each micropost" do
+          user.microposts.paginate(page: 1).each do |micropost|
+            page.should have_selector('li', text: "A")
+          end
         end
       end
     end
