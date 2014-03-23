@@ -13,6 +13,7 @@ module ApplicationHelper
   def startup
     #create_random_users
     #create_microposts
+    #create_relationships
   end
   
   def create_random_users
@@ -47,5 +48,14 @@ module ApplicationHelper
       content = "DAFUQ #{n}"
       users.each { |user| user.microposts.create!(content: content) }
     end
+  end
+  
+  def create_relationships
+    users = User.all
+    user  = users.first
+    followed_users = users[2..50]
+    followers      = users[3..40]
+    followed_users.each { |followed| user.follow!(followed) }
+    followers.each      { |follower| follower.follow!(user) }
   end
 end
